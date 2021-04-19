@@ -8,11 +8,11 @@ class Sorting {
     public:
         // Helper Functions
         int getComparison();
-        void PrintArray(int* numbers);
+        void PrintArray(int* values);
         void Swap(int &a, int &b);
         int MinIndex(int values[ ], int start, int end);
         void ReheapDown(int values[ ], int root, int bottom);
-        void Split(int* numbers, int first, int last, int& splitPoint);
+        void Split(int* values, int first, int last, int& splitPoint);
         // Sort Functions
         void SelectionSort(int values[ ], int n);
         void MergeSort(int values[ ],int first, int last);

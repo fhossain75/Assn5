@@ -18,9 +18,9 @@ int Sorting::getComparison() {
 * Helper Function: Swap
 * Purpose: Print complete list of numbers
 */
-void Sorting::PrintArray(int* numbers) {
+void Sorting::PrintArray(int* values) {
     for (int i = 0 ; i < 10000; i++) {
-        cout << numbers[i] << " ";
+        cout << values[i] << " ";
     }
     cout<<endl;
 }
@@ -88,7 +88,8 @@ void Sorting::ReheapDown(int values[ ], int root, int bottom ) {
 * Helper Function: Split
 * Purpose: Divde the array into subarrays
 */
-void Sorting::Split(int* numbers, int first, int last, int& splitPoint) {
+void Sorting::Split(int* values, int first, int last, int& splitPoint) {
+    {
     int splitVal = first;
     int saveFirst = first;
     bool onCorrectSide;
@@ -98,9 +99,9 @@ void Sorting::Split(int* numbers, int first, int last, int& splitPoint) {
         onCorrectSide = true;
         while (onCorrectSide) {
             comparisons++;
-            
+
             // Move first toward last.
-            if (numbers[first] > splitVal) {
+            if (values[first] > splitVal) {
                 onCorrectSide = false;
             }
             else {
@@ -112,8 +113,8 @@ void Sorting::Split(int* numbers, int first, int last, int& splitPoint) {
         // if on coorect side keep going
         onCorrectSide = (first <= last);
         while (onCorrectSide) {
-            comparisons++; // Move last toward first.
-            if (numbers[last] <= splitVal) {
+            comparisons++;
+            if (values[last] <= splitVal) {
                 onCorrectSide = false;
             }
             else {
@@ -123,17 +124,17 @@ void Sorting::Split(int* numbers, int first, int last, int& splitPoint) {
         }
 
         if (first < last) {
-            Swap(numbers[first], numbers[last]);
+            Swap(values[first], values[last]);
             first++;
             last--;
         }
     } //do
-
-    while (first <= last) {
-        splitPoint = last;
-        Swap(numbers[saveFirst], numbers[splitPoint]);
-    }
+    while (first <= last);
+    splitPoint = last;
+    Swap(values[saveFirst], values[splitPoint]);
 }
+}
+
 
 /* 
 * Selection Sort
@@ -214,7 +215,7 @@ void Sorting::Merge(int values[ ], int leftFirst, int leftLast, int rightFirst, 
 *          heap sort
 */
 void Sorting::HeapSort(int values[ ], int numValues) {
-    int  index ;
+    int index = 0;
 
     // Convert array  values[0 ... numValues-1] into a heap
     for (index = numValues/2 - 1; index >= 0; index--) {
@@ -233,7 +234,7 @@ void Sorting::HeapSort(int values[ ], int numValues) {
 * Purpose: Sorts array values[0 ... numValues-1] into ascending order by key recursively using
 *          quick sort
 */
-void QuickSort(int values[ ], int first, int last) {
+void Sorting::QuickSort(int* values, int first, int last) {
     //  General case
     if (first < last) { 
         int splitPoint;
