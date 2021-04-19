@@ -43,14 +43,14 @@ int main(int argc, char * argv[]) {
 
     // User Input: Command "s" - selection-sort
     if (input.compare("s") == 0) {
-        sorting.SelectionSort(array,10000);
+        sorting.SelectionSort(array, 10000);
         sorting.PrintArray(array);
         cout << "#Selection-sort comparisons: " << sorting.getComparison() << endl;
     }
 
     // User Input: Command "m" - merge-sort
     else if (input.compare("m") == 0) {
-        sorting.MergeSort(array,0,9999);
+        sorting.MergeSort(array, 0, 9999);
         sorting.PrintArray(array);
         cout << "#Merge-sort comparisons: " << sorting.getComparison() << endl;
     }

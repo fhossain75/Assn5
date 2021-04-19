@@ -77,7 +77,7 @@ void Sorting::ReheapDown(int values[ ], int root, int bottom ) {
                 maxChild = leftChild;
             }
         }
-        if (values[ root ] < values[maxChild]) {
+        if (values[root] < values[maxChild]) {
             Swap (values[root], values[maxChild]);
             ReheapDown(values, maxChild, bottom);
         }
@@ -89,7 +89,6 @@ void Sorting::ReheapDown(int values[ ], int root, int bottom ) {
 * Purpose: Divde the array into subarrays
 */
 void Sorting::Split(int* values, int first, int last, int& splitPoint) {
-    {
     int splitVal = first;
     int saveFirst = first;
     bool onCorrectSide;
@@ -132,7 +131,6 @@ void Sorting::Split(int* values, int first, int last, int& splitPoint) {
     while (first <= last);
     splitPoint = last;
     Swap(values[saveFirst], values[splitPoint]);
-}
 }
 
 
@@ -215,7 +213,7 @@ void Sorting::Merge(int values[ ], int leftFirst, int leftLast, int rightFirst, 
 *          heap sort
 */
 void Sorting::HeapSort(int values[ ], int numValues) {
-    int index = 0;
+    int index;
 
     // Convert array  values[0 ... numValues-1] into a heap
     for (index = numValues/2 - 1; index >= 0; index--) {
@@ -230,7 +228,7 @@ void Sorting::HeapSort(int values[ ], int numValues) {
 } 
 
 /* 
-* Quick Sort (fp)
+* Quick Sort
 * Purpose: Sorts array values[0 ... numValues-1] into ascending order by key recursively using
 *          quick sort
 */
