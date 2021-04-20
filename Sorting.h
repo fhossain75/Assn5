@@ -3,7 +3,7 @@
 
 class Sorting {
     private:
-        int comparisons = 0;
+        int comparisons;
 
     public:
         // Helper Functions

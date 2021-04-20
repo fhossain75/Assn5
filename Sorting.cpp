@@ -39,7 +39,7 @@ void Sorting::Swap(int &a, int &b) {
 * Helper Function: MinIndex
 * Purpose: Find the index of the smallest value in the array.
 */
-int Sorting::MinIndex(int values[ ], int start, int end) {
+int Sorting::MinIndex(int values[], int start, int end) {
     int indexOfMin = start;
     // Iterate through numbers
     for (int index = start + 1; index <= end; index++) {
@@ -55,7 +55,7 @@ int Sorting::MinIndex(int values[ ], int start, int end) {
 * Helper Function: ReheapDown
 * Purpose: Restore the Heap order property between root and bottom
 */
-void Sorting::ReheapDown(int values[ ], int root, int bottom ) {
+void Sorting::ReheapDown(int values[], int root, int bottom ) {
     int maxChild;
     int rightChild;
     int leftChild;
@@ -63,13 +63,17 @@ void Sorting::ReheapDown(int values[ ], int root, int bottom ) {
     leftChild = root * 2 + 1;
     rightChild = root * 2 + 2;
 
+    // Increment comparison count
+    comparisons++;
+
     if (leftChild <= bottom) {
+        // Increment comparison count
+        comparisons++;
+
         if (leftChild == bottom) {
             maxChild = leftChild;
         }
         else {
-            // Increment comparison count
-            comparisons++;
             if (values[leftChild] <= values [rightChild]) {
                 maxChild = rightChild;
             }
@@ -77,8 +81,9 @@ void Sorting::ReheapDown(int values[ ], int root, int bottom ) {
                 maxChild = leftChild;
             }
         }
+
         if (values[root] < values[maxChild]) {
-            Swap (values[root], values[maxChild]);
+            Swap(values[root], values[maxChild]);
             ReheapDown(values, maxChild, bottom);
         }
     }
@@ -88,14 +93,16 @@ void Sorting::ReheapDown(int values[ ], int root, int bottom ) {
 * Helper Function: Split
 * Purpose: Divde the array into subarrays
 */
-void Sorting::Split(int* values, int first, int last, int& splitPoint) {
-    int splitVal = first;
+void Sorting::Split(int values[], int first, int last, int& splitPoint) {
+    int splitVal = values[first];
     int saveFirst = first;
     bool onCorrectSide;
     
     first++;
+
     do {
         onCorrectSide = true;
+
         while (onCorrectSide) {
             comparisons++;
 
@@ -111,6 +118,7 @@ void Sorting::Split(int* values, int first, int last, int& splitPoint) {
         
         // if on coorect side keep going
         onCorrectSide = (first <= last);
+
         while (onCorrectSide) {
             comparisons++;
             if (values[last] <= splitVal) {
@@ -138,7 +146,7 @@ void Sorting::Split(int* values, int first, int last, int& splitPoint) {
 * Selection Sort
 * Purpose: Sorts array values[0 ... numValues-1] into ascending order by key
 */
-void Sorting::SelectionSort(int values[ ], int numValues ) {
+void Sorting::SelectionSort(int values[], int numValues ) {
     int  endIndex = numValues - 1;
     for (int current = 0; current < endIndex; current++) {
         Swap(values[current], values[MinIndex(values, current, endIndex)]);
@@ -150,7 +158,7 @@ void Sorting::SelectionSort(int values[ ], int numValues ) {
 * Purpose: Sorts array values[0 ... numValues-1] into ascending order by key using
 *          divide and conquer
 */
-void Sorting::MergeSort(int values[ ], int first,int last ) {
+void Sorting::MergeSort(int values[], int first,int last ) {
     // General case
     if (first < last) {
         int middle = (first + last) / 2;
@@ -166,7 +174,7 @@ void Sorting::MergeSort(int values[ ], int first,int last ) {
 * Purpose: Sorts array values[0 ... numValues-1] into ascending order by key using
 *          divide and conquer
 */
-void Sorting::Merge(int values[ ], int leftFirst, int leftLast, int rightFirst, int rightLast) {
+void Sorting::Merge(int values[], int leftFirst, int leftLast, int rightFirst, int rightLast) {
     int tempArray[10000];
     int index = leftFirst;
     int saveFirst = leftFirst;
@@ -212,7 +220,7 @@ void Sorting::Merge(int values[ ], int leftFirst, int leftLast, int rightFirst, 
 * Purpose: Sorts array values[0 ... numValues-1] into ascending order by key using
 *          heap sort
 */
-void Sorting::HeapSort(int values[ ], int numValues) {
+void Sorting::HeapSort(int values[], int numValues) {
     int index;
 
     // Convert array  values[0 ... numValues-1] into a heap
@@ -232,7 +240,7 @@ void Sorting::HeapSort(int values[ ], int numValues) {
 * Purpose: Sorts array values[0 ... numValues-1] into ascending order by key recursively using
 *          quick sort
 */
-void Sorting::QuickSort(int* values, int first, int last) {
+void Sorting::QuickSort(int values[], int first, int last) {
     //  General case
     if (first < last) { 
         int splitPoint;
